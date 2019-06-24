@@ -1,0 +1,15 @@
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\bin\Release\TcpIp.exe.config
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\bin\Release\TcpIp.exe
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\bin\Release\TcpIp.pdb
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.csprojAssemblyReference.cache
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.frmCatraca.resources
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.frmCliente.resources
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.frmClientMulti.resources
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.frmPrincipal.resources
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.frmServerMulti.resources
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.frmServidor.resources
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.Properties.Resources.resources
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.csproj.GenerateResource.cache
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.csproj.CoreCompileInputs.cache
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.exe
+E:\work-zeno\TCP_IP\TcpIp\TcpIp\obj\Release\TcpIp.pdb
