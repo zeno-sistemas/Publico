@@ -1,0 +1,73 @@
+
+---------------------------------------------------------------
+MODEL
+---------------------------------------------------------------
+		public double teste1 { get; set; }
+        public decimal teste2 { get; set; }
+        public decimal teste3 { get; set; }
+		
+
+---------------------------------------------------------------		
+CSHTML
+---------------------------------------------------------------
+
+<div class="row">
+    <div class="col-6">
+        @Html.EMNG().InputFor(m => m.teste1).MascaraDecimal(0).AoAtingirValorMaximo("funcaoMaximo").ValorPadrao(152505.54).ValorMaximo(15000).ValorMinimo(-500)
+    </div>
+    <div class="col-6">
+        @Html.EMNG().InputFor(m => m.teste2).AoAtingirValorMaximo("funcaoMaximo").MascaraDinheiro().ValorPadrao(152505.54).ValorMaximo(5000).ValorMinimo(-500)
+    </div>
+    <div class="col-6">
+        @Html.EMNG().InputFor(m => m.teste3).MascaraPercentual(4).MaxLength(3)
+    </div>
+    <div id='testeDiv1' name='testeDiv1' class="col-6" data-mascara-numero='{"precisao":0, "prefixo": "&#x044E; ", "sufixo":" #", "tamanhoCampo":"5"}' valor-maximo="1000" valor-minimo="-700">
+        1234
+    </div>
+    <div id='testeDiv2' name='testeDiv2' class="col-6" data-mascara-decimal='{"precisao":2}'>
+        2134,21151
+    </div>
+    <div id='testeDiv3' name='testeDiv3' class="col-6" data-mascara-percentual='{"precisao":2}'>
+        2134,21151
+    </div>
+
+    <div id='testeDiv4' name='testeDiv4' class="col-6" data-mascara-decimal='{"precisao":2}' valor-minimo='-200' valor-maximo='200'>
+        2134,21151
+    </div>
+
+    <div id='testeDiv5' name='testeDiv5' class="col-6" data-mascara-dinheiro='{"precisao":2}' valor-minimo='0' ao-atingir-valor-minimo='funcaoMinimo'>
+        2134,21151
+    </div>
+
+    <div id='testeDiv6' name='testeDiv6' class="col-6" data-mascara-percentual='{"precisao":2}' valor-maximo='100' valor-minimo='-20' ao-atingir-valor-maximo='funcaoMaximo' ao-atingir-valor-minimo='funcaoMinimo'>
+        111111
+    </div>
+</div>
+
+<script defer>
+    teste1.addEventListener('change', calcular, false);
+    teste3.addEventListener('input', calcular, false);
+    testeDiv4.addEventListener('keydown', tecla, false);
+    testeDiv5.addEventListener('keyup', tecla, false);
+    testeDiv6.addEventListener('keypress', () => { console.log('ok div'); tecla() }, false);
+    teste2.addEventListener('keypress', () => { console.log('ok'); tecla() }, false);
+
+    function calcular() {
+        resultado = teste1.valueAsNumber + (teste1.valueAsNumber * teste3.valueAsNumber / 100);
+        Descricao.value = resultado;
+        teste2.value = resultado;
+    }
+
+    function tecla() {
+        let tecla = (window.event) ? event.keyCode : e.which;
+        console.log(tecla);
+    }
+
+    function funcaoMaximo() {
+        alert('Máximo');
+    }
+
+    function funcaoMinimo() {
+        alert('Mínimo');
+    }
+</script>
