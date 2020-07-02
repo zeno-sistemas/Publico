@@ -1,0 +1,152 @@
+Node
+MongoDB
+
+
+Instalação do Node
+	Baixar o node e instalar o node
+	No prompt como adm, criar a pasta do projeto ex.: c:\node
+	
+	Instalar Express
+	C:\node> npm install -g express-generator
+	
+	Criar um projeto Express
+	C:\node>express -e --git exemplo1
+		-e -> usar view engine EJS
+		
+	Instalar as dependencias
+	cd exemplo1
+	npm install
+	
+	
+Instalação do Mongo
+	Baixar e instalar (de preferência c:\mongo)
+	Criar uma pasta para dados no diretório de projeto
+	C:\node\exemplo1>mkdir dados
+	
+	No local do mongo executar o servidor
+	c:\mongo\bin> mongod --dbpath c:\node\exemplo1\dados\
+	Porta padrão do mongo é 27017
+	
+	Para editar dados no banco criado
+	Em outro console, navegar até a pasta execute o mongo
+	c:\mongo\bin> mongo
+	
+
+
+Instalar as dependencias ao Mongo
+C:\node\exemplo1> npm install -S mongodb
+
+
+Arquivos:
+	Para organizar, criar o arquivo db.js na raiz do projeto
+	db.js
+	------------------------------------------------------------------
+		var mongoClient = require("mongodb").MongoClient;
+		mongoClient.connect("mongodb://localhost/ex1/data")
+					.then(conn => global.conn = conn.db("ex1"))
+					.catch(err => console.log(err))
+		 
+		module.exports = { }
+
+		function findAll(callback){  
+			global.conn.collection("customers").find({}).toArray(callback);
+		}
+
+		module.exports = { findAll }
+	------------------------------------------------------------------
+	
+	Na pasta bin editar o www e no início inserir:
+	www
+	------------------------------------------------------------------
+		global.db = require('../db');
+	------------------------------------------------------------------
+	
+	Alterar index.js para
+	index.js
+	------------------------------------------------------------------
+		/* GET home page. */
+		router.get('/', function(req, res) {
+		  global.db.findAll((e, docs) => {
+			  if(e) { return console.log(e); }
+			  res.render('index', { title: 'Lista de Clientes', docs: docs });
+		  })
+		})
+	------------------------------------------------------------------
+	
+	Alterar index.ejs para
+	index.ejs
+	------------------------------------------------------------------
+		<!DOCTYPE html>
+			<html>
+			  <head>
+				<title><%= title %></title>
+				<link rel='stylesheet' href='/stylesheets/style.css' />
+			  </head>
+			  <body>
+				<h1><%= title %></h1>
+				<ul>
+				  <% docs.forEach(function(customer){ %>
+					<li>
+						<%= customer.nome %>
+					</li>
+				  <% }) %>
+				</ul>
+			  </body>
+			</html>
+	------------------------------------------------------------------
+	
+	Reiniciar o servidor node
+	Ctrl + C  -> para o servidor node
+	Y -> confirma
+	C:\node\exemplo1>npm start
+
+
+
+========================================================================
+	
+Executar o servidor Node
+	No console como Adm, navegar até a pasta do projeto e lançar o comando
+	npm start
+	
+	Porta padrão do node é 3000
+	http://localhost:3000
+	
+
+
+Iniciar o servidor Mongo
+	No local do mongo executar o servidor
+		c:\mongo\bin> mongod --dbpath c:\node\exemplo1\dados\
+		Porta padrão do mongo é 27017
+
+
+Trabalhar com dados do Mongo em cmd
+	Para editar dados no banco criado
+	Primeiro iniciar o servidor mongod em um console
+	Em outro console, navegar até a pasta execute o mongo
+	c:\mongo\bin> mongo
+	
+	Os comandos são lançados no console do mongo
+	Cria ou conecta a uma base de dados
+		> use exemplo1
+	Para inserir um registro na tabela customers:
+		> db.customers.insert({ "nome" : "Luiz", "idade" : 29 })
+	Listar os registros:
+		> db.customers.find().pretty()
+	Inserir um array
+		> custArray = [{ "nome" : "Fernando", "idade" : 29 }, { "nome" : "Teste", "idade" : 20 }]
+		> db.customers.insert(custArray);
+		
+		
+
+========================================================================
+Trabalhando Node e Mongo
+
+Um bom editor é o Studio3T (https://studio3t.com/)
+
+http://localhost:3000/
+
+ref:
+https://www.luiztools.com.br/post/tutorial-crud-em-node-js-com-driver-nativo-do-mongodb/
+
+
+
